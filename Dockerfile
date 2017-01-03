@@ -12,3 +12,11 @@ RUN curl -sS https://getcomposer.org/installer | php && \
 	git clone --depth 1 https://github.com/drush-ops/drush.git /usr/local/src/drush && \
 	ln -s /usr/local/src/drush/drush /usr/bin/drush && \
 	cd /usr/local/src/drush && composer install
+
+#Current LII conventions	
+RUN mkdir -p /usr/local/projects
+RUN mkdir -p /var/data/json
+RUN mkdir -p /var/www/html/ajax
+
+
+
