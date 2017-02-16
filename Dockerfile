@@ -12,7 +12,11 @@ RUN curl -sS https://getcomposer.org/installer | php && \
 	git clone --depth 1 https://github.com/drush-ops/drush.git /usr/local/src/drush && \
 	ln -s /usr/local/src/drush/drush /usr/bin/drush && \
 	cd /usr/local/src/drush && composer install
-
+RUN yes | pecl install xdebug \
+    && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini
+    
 #Current LII conventions	
 RUN mkdir -p /usr/local/projects
 RUN mkdir -p /var/data/json
